@@ -115,8 +115,13 @@ app.get('/blogs/:id/edit', function (req, res){
   })
 //update
 app.put('/blogs/:id', function (req,res) {
-    req.body.blog.body = req.expressSanitizer(req.body.blog.body);
-    blogDocModel.findByIdAndUpdate(req.params.id, req.body.blog, function (err, updatedBlog) {
+    const editBody = req.sanitize(req.body.blog.body);
+    const objEdited = {
+         title: req.body.blog.title,
+         image: req.body.blog.image,
+         body: editBody
+    }
+    blogDocModel.findByIdAndUpdate(req.params.id, objEdited, function (err, updatedBlog) {
         if(err){
             res.redirect('/blogs');
         }else {

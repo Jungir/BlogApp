@@ -70,15 +70,22 @@ app.get('/new', function (req, res) {
 //create Route
 app.post('/blogs', function (req, res) {
     //create blog
-    req.body.blog.body = req.expressSanitizer(req.body.blog.body);
-    blogDocModel.create(req.body.blog, function (err, newBlog) {
+   const sanitizedString = req.sanitize(req.body.blog.body);
+   
+   const obj = {
+        title: req.body.blog.title,
+        image: req.body.blog.image,
+        body: sanitizedString
+   }
+    blogDocModel.create(obj, function (err, newBlog) {
         if(err){
-            res.err('new');
+            console.log(err);
+            
         }else {
             res.redirect('/blogs');
         }
     })
-    //redirect to index
+    // redirect to index
 })
 
 // SHOW 

@@ -10,3 +10,8 @@ i.icon{
     display: inline-block;
     margin-left: 1rem;
 }
+.footer-container{
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}

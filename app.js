@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const expressSanitizer = require('express-sanitizer');
 
-let DATABASE_URL = process.env.DATABASE_URL || 'mongodb://localhost:27017/photo_lib';
+let DATABASE_URL = process.env.DATABASE_URL || 'mongodb://localhost:27017/blog_app';
 mongoose.connect(DATABASE_URL, {useNewUrlParser: true,
     useCreateIndex: true}).then(()=>{
         console.log('connected to Db');
